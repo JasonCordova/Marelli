@@ -24,7 +24,7 @@
     max-width: 500px;
 }
 
-.input-row:first-child {margin-top: 0px;}
+.login-form .input-row:first-child {margin-top: 0px;}
 
 .input, button {width: 400px; outline: none; border: none;}
 button {display: flex; flex-direction: row; align-items: center;
