@@ -24,11 +24,16 @@ const Header = (props) => {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
 
-    const filledPages = ['/register', '/profile', '/shop', '/create_item', '/products/'];
+    const filledPages = ['/register', '/profile', '/shop', '/create_item', '/products'];
     const pageLocation = useLocation();
-    var lastScroll = 0;
 
-    const initialFilled = filledPages.includes(pageLocation.pathname);
+    const checkPages = () => {
+        for (var i in filledPages)
+            if (pageLocation.pathname.includes(filledPages[i])) return true;
+        return false;
+    }
+
+    const initialFilled = checkPages();
 
     const [showLogin, setLogin] = useState(false);
     const [filled, setFill] = useState(initialFilled);
@@ -106,7 +111,7 @@ const Header = (props) => {
             <div className="mask" onClick={() => {setLogin(false);}}></div>
             <div className="nav-login-form">
 
-                { signedIn == false ? 
+                { signedIn === false ? 
                 <>
                 <div className="login-section">
                     <div className="login-title">
@@ -153,7 +158,7 @@ const Header = (props) => {
                 <div className="profile-section">
                     <div className="profile-header">
                         <div className="profile-wrapper">
-                            <img src={auth.currentUser.photoURL} className="profile-img"/>
+                            <img alt="Profile" src={auth.currentUser.photoURL} className="profile-img"/>
                             <div className="profile-info">
                                 <div className="profile-name">{`${auth.currentUser.displayName}`}</div>
                                 <div className="profile-email">{auth.currentUser.reloadUserInfo.email}</div>

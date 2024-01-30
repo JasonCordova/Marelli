@@ -1,0 +1,51 @@
+.item-page {
+    background-color: white;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    min-height: calc(100vh - 80px);
+}
+
+.item-image {
+    width: 100%;
+    max-height: calc(100vh - 80px);
+    object-fit: contain;
+    background-color: #eae8e7;
+}
+
+.item-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: .04em;
+    width: 100%;
+    max-width: 400px;
+
+}
+
+.item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item-name {
+    font-weight: 500;
+    font-size: 1.8em;
+    padding-top: 4px;
+}
+
+.item-price {
+    font-weight: 300;
+    margin-top: 0.5em;
+    font-size: 1em;
+}
+
+.wishlist-button {aspect-ratio: 1/1; padding-left: 16px; width: 16px; display: flex; display: flex;}
