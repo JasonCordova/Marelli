@@ -1,0 +1,60 @@
+@keyframes swipe {
+    0% {transform: translateX(0%);}
+    100% {transform: translateX(-100%);}
+}
+
+:root {
+    --footer-fill: rgb(0, 0, 0);
+    --footer-color: rgb(255, 255, 255);
+}
+
+.footer {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--footer-fill);
+    fill: var(--footer-color);
+    padding: 24px 0px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    color: var(--footer-color);
+    position: sticky;
+    bottom: 0px;
+    z-index: 0;
+}
+
+.footer svg {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.footer-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 64px;
+    padding: 0px 32px;
+    box-sizing: border-box;
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: row;
+}
+.footer-nav a {padding: 0px 8px;}
+
+.footer-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    margin-top: 48px;
+}
+
+.footer-logo svg {
+    width: 100%;
+    flex-shrink: 0;
+    animation: swipe 15s linear infinite;
+}

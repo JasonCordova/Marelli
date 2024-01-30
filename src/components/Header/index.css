@@ -1,0 +1,343 @@
+.header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    fill: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 99;
+    transition: transform .25s ease-out, background-color .25s ease-out, fill .25s ease-out;
+}
+
+.logo {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+}
+
+.logo svg {height: 22px;}
+
+.search {}
+
+.nav-login-or {
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translate(-50%, 50%);
+    font-weight: 500;
+    background-color: white;
+    padding: 16px 32px;
+    box-sizing: border-box;
+}
+
+.navigation {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 32px;
+    box-sizing: border-box;
+}
+
+.nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-b {display: flex; cursor: pointer;}
+
+.nav-b svg {height: 20px;}
+
+.nav-b.menu svg {
+    height: 13px;
+}
+
+.nav-left, .nav-right {gap: 32px;}
+
+.search-bar {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header:not(.filled):hover {
+    background-color: var(--main-color);
+    fill: var(--header-fill);
+}
+
+.header.filled {background-color: white; fill: black;
+border-bottom: 1px solid rgb(225, 225, 225);}
+
+.login-wrapper {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+
+}
+
+.login-wrapper .mask {
+    widtH: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color var(--transition), backdrop-filter var(--transition);
+}
+
+.login-wrapper.visible .mask {
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: all;
+    backdrop-filter: blur(5px);
+}
+.login-wrapper.visible .nav-login-form {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+.nav-login-form {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    background-color: var(--main-color);
+    position: absolute;
+    right: 0%;
+    transform: translateX(100%);
+    opacity: 0;
+    top: 0%;
+    padding: 48px 0px;
+    box-sizing: border-box;
+    transition: transform var(--transition), opacity var(--transition);
+    pointer-events: all;
+}
+
+.login-title {
+    font-weight: 500;
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-close {
+    display: flex;
+}
+
+.login-close svg {
+    height: 16px;
+    fill: inherit;
+    cursor: pointer;
+}
+
+.input-row .label {font-weight: 400; font-size: 0.8em;
+margin-bottom: 8px;}
+.input-row .login-input {
+    border: 1px solid rgb(210, 210, 210);
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95em;
+    padding: 12px;
+    border-radius: 4px;
+    transition: border-color .15s ease-out;
+    box-sizing: border-box;
+
+}
+.input-row {margin-top: 32px;}
+
+.login-input:focus {
+    border-color: black;
+}
+
+.login-button {
+    width: 100%;
+    padding: 16px 12px;
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.create-button {
+    width: 100%;
+    padding: 16px 12px;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid rgb(55, 55, 55);
+    display: block;
+}
+
+.header.hidden {transform: translateY(-100%);}
+
+.password-input {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 4px;
+}
+
+.password-input input {
+    border: none !important;
+}
+
+.show-password {
+    height: 44.8px;
+    width: 44.8px;
+    aspect-ratio: 1/1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.show-password svg {
+    width: 20px;
+}
+
+:root {
+    --transition: 0.25s ease-out;    
+    --main-color: rgba(255, 255, 255, 1);
+    --header-fill: rgba(0, 0, 0, 1);
+}
+
+.login-section {
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgb(210, 210, 210);
+    padding-left: 48px;
+    padding-right: 48px;
+    position: relative;
+}
+
+.signup-section {
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-top: 48px;
+}
+
+.signup-section .login-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.login-title .description {
+    font-size: 0.75em;
+    font-weight: 400;
+    color: rgb(100, 100, 100);
+    margin-top: 4px;
+}
+
+.profile-section {
+    padding: 0px 48px;
+}
+
+.profile-img {
+    width: 72px;
+    height: 72px;
+    background-color: silver;
+    border-radius: 256px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: rgb(62, 62, 62);
+    text-transform: uppercase;
+    margin-right: 16px;
+    object-fit: cover;
+    object-position: 0% 0%;
+    border: 1px solid rgb(150, 150, 150);
+    box-sizing: border-box;
+    object-position: 50% 50%;
+}
+
+.profile-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.profile-email {font-size: 0.9em; color: rgb(130, 130, 130);}
+
+.profile-options {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-nav {
+    font-size: 1.25em;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.profile-nav:last-child {
+    margin-bottom: 0px;
+}
+.profile-nav svg {width: 16px; margin-right: 16px;}
+.error {
+    border-color: red !important;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.abs {
+    position: sticky;
+    top: 0px;
+}

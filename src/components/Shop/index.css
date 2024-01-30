@@ -1,0 +1,103 @@
+/*.filter-holder {
+    width: 300px;
+    height: calc(100vh - 80px);
+    color: black;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}*/
+
+.filter-holder {
+    display: flex;
+    flex-direction: row;
+}
+
+.shop-info {
+    width: 100%;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 81px;
+    background-color: white;
+    border-bottom: 1px solid rgb(225, 225, 225);
+    z-index: 1;
+}
+.shop-title {
+    font-weight: 400;
+    font-size: 0.85em;
+}
+
+.filter-tab {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-options {
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.1s ease-out;
+}
+
+.f-options-c {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: flex-start;
+}
+
+.filter-tab svg { height: 8px; }
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-title {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.filter {
+    border-bottom: 1px solid rgb(210, 210, 210);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.filter.opened .filter-options {grid-template-rows: 1fr;}
+
+.radio-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.radio-option:last-child {
+    margin-bottom: 24px;
+}
+
+.radio-label {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: rgb(80, 80, 80);
+    margin-left: 12px;
+}
+
+input[type="radio"]:not(.switch) {
+    width: 14px;
+    height: 14px;
+    aspect-ratio: 1/1;
+}
+
+.shop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+}
