@@ -1,6 +1,6 @@
 import './index.css';
 import video from '../../adrian_1.mp4';
-import {auth, defaultProfilePicture, storage} from '../../firebaseConfig.js';
+import {auth, storage} from '../../firebaseConfig.js';
 import { onAuthStateChanged, updateProfile } from 'firebase/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState, useRef } from 'react';
@@ -69,7 +69,7 @@ const Profile = () => {
             <div className="page-content">
                 <div className="profile-info">
                     <div className="profile-picture-input">
-                        <img ref={profilePicture} className="profile-picture">
+                        <img alt='Profile' ref={profilePicture} className="profile-picture">
                         </img>
                         <div className="update-picture" onClick={() => {hiddenInput.current.click();}}>
                             {camera}
