@@ -36,6 +36,7 @@ const Header = (props) => {
     const initialFilled = checkPages();
 
     const [showLogin, setLogin] = useState(false);
+    const [showMenu, setMenu] = useState(false);
     const [filled, setFill] = useState(initialFilled);
     const [passwordHidden, setPasswordHidden] = useState(true);
     const [signedIn, setSignedIn] = useState(false);
@@ -56,6 +57,11 @@ const Header = (props) => {
         if (!initialFilled)
             window.pageYOffset >= header.current.getBoundingClientRect().height ? setFill(true) : setFill(false);
 
+    }
+
+    const hideAll = () => {
+        setLogin(false);
+        setMenu(false);
     }
 
     const handleError = (error) => {
@@ -87,112 +93,141 @@ const Header = (props) => {
 
     return (
         <>
-        <div ref={header} className={`header${filled ? " filled" : ""}${initialFilled ? ' abs' : ''}`}>
+            <div ref={header} className={`header${filled ? " filled" : ""}${initialFilled ? ' abs' : ''}`}>
 
-            <a href="/" className="logo">
-                {logo}
-            </a>
-            <div className="navigation">
-                <div className="nav-left">
-                    <div className='nav-b menu'>{menu}</div>
-                    <div className='nav-b'>
-                        {search}
-                    </div>
-                </div>
-
-                <div className="nav-right">
-                    <div className='nav-b' onClick={() => {setLogin(true);}}>{profile}</div>
-                    {auth.currentUser ? <div className='nav-b'>{cart}</div> : ''}
-                </div>
-            </div>
-
-        </div>
-        <div className={`login-wrapper${showLogin ? ' visible': ''}`}>
-            <div className="mask" onClick={() => {setLogin(false);}}></div>
-            <div className="nav-login-form">
-
-                { signedIn === false ? 
-                <>
-                <div className="login-section">
-                    <div className="login-title">
-                        <span>Sign In</span>
-                        <div className="login-close" onClick={() => {setLogin(false)}}>{close}</div>
-                    </div>
-
-                    <form className="form" onSubmit={(e) => {e.preventDefault(); signIn();}}>
-                    <div className="input-row">
-                        <div className="label">Email*</div>
-                        <input ref={emailInput} required text="text" name="email" className="login-input"></input>
-                    </div>
-
-                    <div className="input-row">
-                        <div className="label">Password*</div>
-                        <div className="password-input">
-                            <input ref={passwordInput} required maxLength={40} name="password" text="text" type={passwordHidden ? "password" : "text"} className="login-input"></input>
-                            <div className="show-password" onClick={() => {setPasswordHidden(!passwordHidden);}}>
-                                {passwordHidden ? hidePassword : showPassword}
-                            </div>
+                <a href="/" className="logo">
+                    {logo}
+                </a>
+                <div className="navigation">
+                    <div className="nav-left">
+                        <div className='nav-b menu' onClick={() => {setMenu(true);}}>{menu}</div>
+                        <div className='nav-b'>
+                            {search}
                         </div>
                     </div>
 
-                    <div className="input-row">
-                        <button className="login-button">Sign In</button>
-                    </div>
-                    </form>
-
-                    <div className="nav-login-or">OR</div>
-                </div>
-
-                <div className="signup-section">
-                    <div className="login-title">
-                        <span>Create an account</span>
-                        <span className="description">Register a new account to enjoy a richer experience</span>
-                    </div>
-                    <div className="input-row">
-                        <a href="/register" className="create-button">Create Account</a>
-                    </div>
-                    
-                </div>
-                </>
-                : 
-                <div className="profile-section">
-                    <div className="profile-header">
-                        <div className="profile-wrapper">
-                            <img alt="Profile" src={auth.currentUser.photoURL} className="profile-img"/>
-                            <div className="profile-info">
-                                <div className="profile-name">{`${auth.currentUser.displayName}`}</div>
-                                <div className="profile-email">{auth.currentUser.reloadUserInfo.email}</div>
-                            </div>
-                        </div>
-                        <div className="login-close" onClick={() => {setLogin(false)}}>{close}</div>
-                    </div>
-                    <div className="profile-options">
-
-                        <a className="profile-nav" href="/profile">
-                            {profile}
-                            <span>Profile</span>
-                        </a>
-
-                        <a className="profile-nav" href="/profile">
-                            {order}
-                            <span>Order History</span>
-                        </a>
-
-                        <a className="profile-nav" href="/profile">
-                            {heart}
-                            <span>Wish List</span>
-                        </a>
-
-                    </div>
-                    <div className="input-row">
-                        <div onClick={() => {userLogout();}} className="create-button">Log Out</div>
+                    <div className="nav-right">
+                        <div className='nav-b' onClick={() => {setLogin(true);}}>{profile}</div>
+                        {auth.currentUser ? <div className='nav-b'>{cart}</div> : ''}
                     </div>
                 </div>
-                }
-
 
             </div>
-        </div>
+            <div className={`mask${showLogin || showMenu ? ' visible' : ''}`} onClick={() => {hideAll();}}></div>
+
+            <div className={`login-wrapper${showLogin ? ' visible': ''}`}>
+                <div className="nav-login-form">
+
+                    { signedIn === false ? 
+                    <>
+                    <div className="login-section">
+                        <div className="login-title">
+                            <span>Sign In</span>
+                            <div className="login-close" onClick={() => {setLogin(false)}}>{close}</div>
+                        </div>
+
+                        <form className="form" onSubmit={(e) => {e.preventDefault(); signIn();}}>
+                        <div className="input-row">
+                            <div className="label">Email*</div>
+                            <input ref={emailInput} required text="text" name="email" className="login-input"></input>
+                        </div>
+
+                        <div className="input-row">
+                            <div className="label">Password*</div>
+                            <div className="password-input">
+                                <input ref={passwordInput} required maxLength={40} name="password" text="text" type={passwordHidden ? "password" : "text"} className="login-input"></input>
+                                <div className="show-password" onClick={() => {setPasswordHidden(!passwordHidden);}}>
+                                    {passwordHidden ? hidePassword : showPassword}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="input-row">
+                            <button className="login-button">Sign In</button>
+                        </div>
+                        </form>
+
+                        <div className="nav-login-or">OR</div>
+                    </div>
+
+                    <div className="signup-section">
+                        <div className="login-title">
+                            <span>Create an account</span>
+                            <span className="description">Register a new account to enjoy a richer experience</span>
+                        </div>
+                        <div className="input-row">
+                            <a href="/register" className="create-button">Create Account</a>
+                        </div>
+                        
+                    </div>
+                    </>
+                    : 
+                    <div className="profile-section">
+                        <div className="profile-header">
+                            <div className="profile-wrapper">
+                                <img alt="Profile" src={auth.currentUser.photoURL} className="profile-img"/>
+                                <div className="profile-info">
+                                    <div className="profile-name">{`${auth.currentUser.displayName}`}</div>
+                                    <div className="profile-email">{auth.currentUser.reloadUserInfo.email}</div>
+                                </div>
+                            </div>
+                            <div className="login-close" onClick={() => {setLogin(false)}}>{close}</div>
+                        </div>
+                        <div className="profile-options">
+
+                            <a className="profile-nav" href="/profile">
+                                {profile}
+                                <span>Profile</span>
+                            </a>
+
+                            <a className="profile-nav" href="/profile">
+                                {order}
+                                <span>Order History</span>
+                            </a>
+
+                            <a className="profile-nav" href="/profile">
+                                {heart}
+                                <span>Wish List</span>
+                            </a>
+
+                        </div>
+                        <div className="input-row">
+                            <div onClick={() => {userLogout();}} className="create-button">Log Out</div>
+                        </div>
+                    </div>
+                    }
+
+
+                </div>
+            </div>
+
+            <div className={`menu-wrapper${showMenu ? ' visible': ''}`}>
+
+                <a className="profile-nav" href="/shop">
+                    <span>Shop All</span>
+                </a>
+
+                <a className="profile-nav" href="/shop/men">
+                    <span>Men</span>
+                </a>
+
+                <a className="profile-nav" href="/shop/women">
+                    <span>Women</span>
+                </a>
+
+                <a className="profile-nav" href="/shop/accessories">
+                    <span>Accessories</span>
+                </a>
+
+                <a className="profile-nav" href="/shop/sale">
+                    <span>Sale</span>
+                </a>
+
+                <a className="profile-nav" href="/create_item">
+                    <span>Create Item</span>
+                </a>
+
+            </div>
         </>
     )
 

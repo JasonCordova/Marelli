@@ -23,8 +23,7 @@ const Register = () => {
                 updateProfile(e.user, {
                     displayName: `${firstname.current.value} ${lastname.current.value}`,
                     photoURL: `https://firebasestorage.googleapis.com/v0/b/marelli-ad154.appspot.com/o/M.png?alt=media&token=a0dd08e1-393f-48de-9aaf-5e2c8d5bd784`
-                });
-                window.location.href = "/";
+                }).then(() => {window.location.href = "/";});
             });
         } catch (err) {
             console.log(err);

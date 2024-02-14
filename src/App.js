@@ -30,6 +30,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/shop' element={<Shop/>}/>
+        <Route path='/shop/:category' element={<Shop/>}/>
         <Route path='/create_item' element={<CreateItem/>}/>
         <Route path='/products/:id' element={<Product/>}/>
       </Routes>

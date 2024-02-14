@@ -47,17 +47,30 @@ const Home = () => {
 
             </div>
 
-            <div className="popular-categories">
+            <div className="new-arrivals">
 
-                {[1, 2, 3, 4].map((e) => {
-                    return (<a href="#" className="category">
-                    <img draggable={false} src={imageLink} className='category-img'/>
-                    <div className="category-info">
-                        <div className="category-title">Item Name</div>
-                        <div className="category-price">$99.99</div>
+                <div className="label-wrapper">
+                    <div className="label-title">New Arrivals</div>
+                    <div className="label-desc">
+
+                    Step into luxury with Marelli's stunning new arrivals, where elegance meets innovation to redefine your style
+
                     </div>
-                </a>);
-                })}
+                </div>
+
+                <div className="popular-categories">
+
+                    {[1, 2, 3, 4].map((e) => {
+                        return (<a href="#" className="category" key={e}>
+                        <img draggable={false} src={imageLink} className='category-img'/>
+                        <div className="category-info">
+                            <div className="category-title">Item Name</div>
+                            <div className="category-price">$99.99</div>
+                        </div>
+                    </a>);
+                    })}
+
+                </div>
 
             </div>
 

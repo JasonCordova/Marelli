@@ -96,8 +96,24 @@ input[type="radio"]:not(.switch) {
     aspect-ratio: 1/1;
 }
 
+.shop-message {
+    width: 100%;
+    height: calc(100vh - 127.2px);
+    min-height: 400px;
+    background-color: #ffffff;
+    grid-column: span 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    color: #848484;
+}
+
 .shop {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
+    min-height: calc(100vh - 127.2px);
+    align-items: flex-start;
 }

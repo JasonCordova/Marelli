@@ -2,35 +2,39 @@ import {useRef} from 'react';
 import {collection, getDocs, doc, setDoc, deleteDoc, addDoc} from 'firebase/firestore/lite';
 import { db, storage } from '../../firebaseConfig';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import './index.css';
 
 const CreateItem = () => {
 
     const nameInput = useRef(null);
-    const priceInput = useRef(null);
+    const currentPriceInput = useRef(null);
+    const retailPriceInput = useRef(null);
     const stockInput = useRef(null);
     const imageInput = useRef(null);
+    const genderInput = useRef(null);
+    const categoryInput = useRef(null);
 
     const addItem = async () => {
         
-        const imgArray = [...Array.from(imageInput.current.files)];
-        const urlArray = [];
-
-        for (var i in imgArray){
-
-            const imgRef = ref(storage, `storeImages/${imgArray[i].name}`)
-            uploadBytes(imgRef, imgArray[i]).then((e) => {
-                getDownloadURL(e).then((e) => {console.log(e);})
-            });
-        }
-
         var itemName = nameInput.current.value.replaceAll(" ", "-").toLowerCase();
 
-        await setDoc(doc(db, "items", itemName), ({
-            name: nameInput.current.value,
-            price: parseFloat(priceInput.current.value),
-            stock: parseInt(stockInput.current.value),
-            images: [],
-        }));
+        const imgRef = ref(storage, `storeImages/${itemName}`);
+
+        uploadBytes(imgRef, imageInput.current.files[0]).then(() => {
+            getDownloadURL(ref(storage, `storeImages/${itemName}`)).then((e) => {
+                
+                setDoc(doc(db, "items", itemName), ({
+                    name: nameInput.current.value,
+                    retailPrice: parseFloat(retailPriceInput.current.value),
+                    currentPrice: parseFloat(currentPriceInput.current.value),
+                    stock: parseInt(stockInput.current.value),
+                    category: categoryInput.current.value,
+                    gender: genderInput.current.value,
+                    image: e,
+                })).then(() => {window.location.href = `/products/${itemName}`});
+
+            })
+        });
 
     }
 
@@ -41,22 +45,44 @@ const CreateItem = () => {
 
                 <div className="input-row">
                     <div className="label">Item Name*</div>
-                    <input ref={nameInput} required text="text" name='item_name' className="login-input"></input>
+                    <input ref={nameInput} required type="text" name='item_name' className="login-input"></input>
                 </div>
 
                 <div className="input-row">
-                    <div className="label">Price*</div>
-                    <input ref={priceInput} required text="number" name='item_price' className="login-input"></input>
+                    <div className="label">Retail Price*</div>
+                    <input ref={retailPriceInput} required type="number" step="0.01" name='retail_price' className="login-input"></input>
+                </div>
+
+                <div className="input-row">
+                    <div className="label">Current Price*</div>
+                    <input ref={currentPriceInput} required type="number" step="0.01" name='current_price' className="login-input"></input>
                 </div>
 
                 <div className="input-row">
                     <div className="label">Stock*</div>
-                    <input ref={stockInput} required text="number" name='item_stock' className="login-input"></input>
+                    <input ref={stockInput} required type="number" name='item_stock' className="login-input"></input>
                 </div>
 
                 <div className="input-row">
-                    <div className="label">Images*</div>
-                    <input ref={imageInput} required type='file' multiple name='item_stock' className="login-input"></input>
+                    <div className="label">Category*</div>
+                    <select ref={categoryInput} required name='category' defaultValue={"accessories"} className="login-input">
+                        <option value="clothing">Clothing</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <div className="input-row">
+                    <div className="label">Image*</div>
+                    <input ref={imageInput} required type='file' name='image' className="login-input"></input>
+                </div>
+
+                <div className="input-row">
+                    <div className="label">Gender</div>
+                    <select ref={genderInput} required name='gender' defaultValue={""} className="login-input">
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="">Unisex</option>
+                    </select>
                 </div>
 
                 <div className="input-row">

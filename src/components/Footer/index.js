@@ -13,12 +13,7 @@ const Footer = () => {
 
             <div className="footer-line">
                 <span>Marelli © 2024</span>
-                <div className="footer-nav">
-                    <a href="/">Home</a>
-                    <a href="/shop">Shop</a>
-                    <a href="/register">Register</a>
-                </div>
-                <span>Made by Jason</span>
+                <span>Code by Jason C.</span>
             </div>
 
         </div>
