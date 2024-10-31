@@ -38,7 +38,10 @@
     gap: 64px;
     align-items: flex-start;
     justify-content: center;
+    border-bottom: 1px solid #cccccc;
 }
+
+.js {justify-content: start;}
 
 .profile-picture {
     width: 192px;
@@ -123,8 +126,14 @@ input:disabled {background-color: rgb(230, 230, 230); color: rgb(125    , 125   
     width: 100%;    
 }
 
+.page-content:last-child {
+    border-bottom: none;
+}
+
+@media (hover){
 .update-picture:hover {
     background-color: rgb(235, 235, 235);
+}
 }
 
 .row.double {
@@ -140,4 +149,22 @@ input:disabled {background-color: rgb(230, 230, 230); color: rgb(125    , 125   
 }
 .row-cell:last-child {
     border-bottom: 1px solid rgb(210, 210, 210);
+}
+
+.wishlist-wrapper {
+    padding: 48px 32px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
 }

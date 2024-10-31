@@ -98,9 +98,9 @@ const Shop = () => {
                                 <div className="category-title">{e.data().name}</div>
                                 <div className="category-price">
 
-                                    { e.data().currentPrice.toFixed(2) !== e.data().retailPrice.toFixed(2) ? 
-                                        <><span className="current-price">{"$" + e.data().currentPrice.toFixed(2)}</span><span className='retail'>{"$" + e.data().retailPrice.toFixed(2)}</span></> 
-                                        : <span>{"$" + e.data().currentPrice.toFixed(2)}</span> 
+                                    { e.data().currentPrice.toFixed(2) < e.data().retailPrice.toFixed(2) ? 
+                                        <><span className="current-price">{"$" + e.data().currentPrice.toFixed(2).toLocaleString('en-US')}</span><span className='retail'>{"$" + e.data().retailPrice.toFixed(2)}</span></> 
+                                        : <span>{"$" + e.data().currentPrice.toFixed(2).toLocaleString('en-US')}</span> 
                                     }
 
                                 </div>

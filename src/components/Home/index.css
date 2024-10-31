@@ -188,3 +188,9 @@
     background: white;
     z-index: 1;
 }
+
+.category-title {
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #151515;
+}

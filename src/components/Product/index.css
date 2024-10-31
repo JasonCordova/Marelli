@@ -34,7 +34,7 @@
 
 .item-name {
     font-weight: 500;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 .item-price {
@@ -51,10 +51,12 @@
 }
 
 .wishlist-button {aspect-ratio: 1/1;width: 20px; display: flex; display: flex;
-padding: 16px; border: 1px solid black; border-radius: 32px;
-align-items: center; justify-content: center;}
+padding: 16px; border-radius: 32px; transition: background-color var(--fast-transition), fill var(--fast-transition);
+align-items: center; justify-content: center; cursor: pointer;
+background-color: rgb(206, 206, 206);
+        fill: rgb(52, 52, 52);}
 
-.wishlist-button svg {width: 90%;}
+.wishlist-button svg {width: 100%;}
 
 .item-image-container {
     overflow: hidden;
@@ -79,20 +81,38 @@ align-items: center; justify-content: center;}
     align-items: center;
     text-align: center;
     font-size: 0.9em;
+    cursor: pointer;
+    user-select: none;
 }
 
 .item-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 50%;
+    object-position: 50% 0%;
     border: none;
     outline: none;
 }
 
+.wishlist-button.filled {
+    fill: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+}
+
 @media (hover){
-    .wishlist-button:hover {
-        background-color: black;
-        fill: white;
+    .wishlist-button:not(.filled):hover {
+        background-color: rgb(176, 176, 176);
+        fill: rgb(52, 52, 52);
+    }
+
+    .cart-button:hover {
+        background-color: rgb(30, 30, 30);
+    }
+
+}
+
+@media (hover){
+    .wishlist-button.filled:hover {
+        background-color: rgb(30, 30, 30);
     }
 }

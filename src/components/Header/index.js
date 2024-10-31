@@ -2,7 +2,7 @@ import './index.css';
 import { auth } from '../../firebaseConfig';
 import {useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut} from 'firebase/auth';
 
 const logo = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.032 34.08"><path d="M6.864 34.08V8.016l8.688 26.064h5.616l8.64-26.016V34.08h6.72V0h-9.7l-8.3 25.248L10.176 0H0v34.08Zm78.576 0L72.528 0H64.8L51.888 34.08h7.2l2.592-7.3h13.728L78 34.08ZM68.54 7.44l4.848 13.584h-9.644Zm39.22 26.64v-12.1h5.808l7.728 12.1h7.968l-8.5-12.816a9.828 9.828 0 0 0 7.3-9.984v-.576c0-6.96-5.232-10.7-12.336-10.7H100.8V34.08Zm0-28.224h7.248c3.36 0 5.76 1.44 5.76 4.848v.576c0 3.36-2.4 4.848-5.76 4.848h-7.248Zm61.536 28.224v-5.808h-17.808V19.58h15.888v-5.76h-15.888V5.804h17.472V0h-24.48v34.08Zm37.2 0v-5.808h-13.488V0h-7.1v34.08Zm37.344 0v-5.808h-13.488V0h-7.1v34.08Zm24.192 0V0h-7.1v34.08Z"/></svg>;
 
@@ -24,7 +24,7 @@ const Header = (props) => {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
 
-    const filledPages = ['/register', '/profile', '/shop', '/create_item', '/products'];
+    const filledPages = ['/register', '/profile', '/shop', '/create_item', '/products', '/cart'];
     const pageLocation = useLocation();
 
     const checkPages = () => {
@@ -82,7 +82,7 @@ const Header = (props) => {
 
     const signIn = async () => {
 
-        signInWithEmailAndPassword(auth, emailInput.current.value, passwordInput.current.value).then((e) => {setLogin(false);})
+        signInWithEmailAndPassword(auth, emailInput.current.value, passwordInput.current.value).then((e) => {})
         .catch(err => {handleError(err.code)}).then(() => {});
 
     }
@@ -101,14 +101,14 @@ const Header = (props) => {
                 <div className="navigation">
                     <div className="nav-left">
                         <div className='nav-b menu' onClick={() => {setMenu(true);}}>{menu}</div>
-                        <div className='nav-b'>
+                        {/* <div className='nav-b'>
                             {search}
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="nav-right">
                         <div className='nav-b' onClick={() => {setLogin(true);}}>{profile}</div>
-                        {auth.currentUser ? <div className='nav-b'>{cart}</div> : ''}
+                        {auth.currentUser ? <a href="/cart" className='nav-b'><div className="cart-num">{props.cartLength}</div>{cart}</a> : ''}
                     </div>
                 </div>
 
@@ -175,17 +175,17 @@ const Header = (props) => {
                         </div>
                         <div className="profile-options">
 
-                            <a className="profile-nav" href="/profile">
+                            <a className="profile-nav" href="/profile" onClick={() => {setLogin(false)}}>
                                 {profile}
                                 <span>Profile</span>
                             </a>
 
-                            <a className="profile-nav" href="/profile">
+                            <a className="profile-nav" href="/profile#orders" onClick={() => {setLogin(false)}}>
                                 {order}
                                 <span>Order History</span>
                             </a>
 
-                            <a className="profile-nav" href="/profile">
+                            <a className="profile-nav" href="/profile#wishlist" onClick={() => {setLogin(false)}}>
                                 {heart}
                                 <span>Wish List</span>
                             </a>

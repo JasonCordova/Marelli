@@ -13,7 +13,7 @@
     box-sizing: border-box;
     background-color: var(--footer-fill);
     fill: var(--footer-color);
-    padding: 24px 0px;
+    padding: 8rem 0px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -35,6 +35,7 @@
     justify-content: space-between;
     margin-top: 64px;
     padding: 0px 32px;
+    font-size: 0.85em;
     box-sizing: border-box;
 }
 

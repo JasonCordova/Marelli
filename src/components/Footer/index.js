@@ -13,7 +13,7 @@ const Footer = () => {
 
             <div className="footer-line">
                 <span>Marelli © 2024</span>
-                <span>Code by Jason C.</span>
+                <span>Homemade by Jason</span>
             </div>
 
         </div>

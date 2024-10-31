@@ -12,6 +12,7 @@ const Register = () => {
     const password = useRef();
     const firstname = useRef();
     const lastname = useRef();
+    const passwordInputHolder = useRef();
 
     const [passwordHidden, setPasswordHidden] = useState(true);
 
@@ -26,7 +27,10 @@ const Register = () => {
                 }).then(() => {window.location.href = "/";});
             });
         } catch (err) {
-            console.log(err);
+            console.log(err.code);
+            if (err.code === "auth/email-already-in-use"){
+                email.current.classList.add("error");
+            }
         }
 
     }
@@ -42,8 +46,8 @@ const Register = () => {
 
                 <div className="input-row">
                     <div className="label">Password*</div>
-                    <div className="password-input">
-                        <input ref={password} required maxLength={40} text="text" type={passwordHidden ? "password" : "text"} className="login-input"></input>
+                    <div ref={passwordInputHolder} className="password-input">
+                        <input ref={password} required minLength={8} maxLength={40} text="text" type={passwordHidden ? "password" : "text"} className="login-input"></input>
                         <div className="show-password" onClick={() => { setPasswordHidden(!passwordHidden); }}>
                             {passwordHidden ? hidePassword : showPassword}
                         </div>

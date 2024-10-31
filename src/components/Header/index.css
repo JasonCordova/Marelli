@@ -59,7 +59,7 @@
     align-items: center;
 }
 
-.nav-b {display: flex; cursor: pointer;}
+.nav-b {display: flex; cursor: pointer; position: relative;}
 
 .nav-b svg {height: 20px;}
 
@@ -80,6 +80,11 @@
 .header:not(.filled):hover {
     background-color: var(--main-color);
     fill: var(--header-fill);
+}
+
+.header:not(.filled):hover .cart-num{
+    background-color: black;
+    color: white;
 }
 
 .header.filled {background-color: white; fill: black;
@@ -134,7 +139,6 @@ border-bottom: 1px solid rgb(225, 225, 225);}
 .mask.visible {
     background-color: rgba(0, 0, 0, .5);
     pointer-events: all;
-    backdrop-filter: blur(5px);
 }
 .login-wrapper.visible .nav-login-form {
     transform: translateX(0%);
@@ -254,12 +258,37 @@ margin-bottom: 8px;}
     cursor: pointer;
 }
 
+.cart-num {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    font-size: 0.65em;
+}
+
+.header:not(.filled) .cart-num {
+    background-color: white;
+    color: black;
+}
+
+.header.filled .cart-num{
+    background-color: black;
+    color: white;
+}
+
 .show-password svg {
     width: 20px;
 }
 
 :root {
     --transition: 0.25s ease-out;    
+    --fast-transition: 0.15s ease-out;    
     --main-color: rgba(255, 255, 255, 1);
     --header-fill: rgba(0, 0, 0, 1);
 }
