@@ -108,7 +108,8 @@ const Header = (props) => {
 
                     <div className="nav-right">
                         <div className='nav-b' onClick={() => {setLogin(true);}}>{profile}</div>
-                        {auth.currentUser ? <a href="/cart" className='nav-b'><div className="cart-num">{props.cartLength}</div>{cart}</a> : ''}
+                        {/* {auth.currentUser ? <a href="/cart" className='nav-b'><div className="cart-num">{props.cartLength}</div>{cart}</a> : ''} */}
+                        <a href="/cart" className='nav-b'><div className="cart-num">{props.cartLength}</div>{cart}</a>
                     </div>
                 </div>
 
