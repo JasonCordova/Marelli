@@ -4,6 +4,7 @@ import PageNotFound from './components/PageNotFound/index.js';
 import Home from './components/Home/index.js';
 import Register from './components/Register/index.js';
 import Profile from './components/Profile/index.js';
+import Confirmation from "./components/Confirmation/index.js";
 import Shop from './components/Shop/index.js';
 import CreateItem from "./components/CreateItem/index.js";
 import Product from './components/Product/index.js';
@@ -67,6 +68,7 @@ function App() {
         <Route path='/create_item' element={<CreateItem/>}/>
         <Route path='/products/:id' element={<Product updateCartNumber={updateCartNumber}/>}/>
         <Route path='/cart' element={<Cart updateCartNumber={updateCartNumber}/>}/>
+        <Route path='/confirmation/:id' element={<Confirmation/>}/>
       </Routes>
       <Footer/>
     </>

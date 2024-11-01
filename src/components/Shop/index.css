@@ -117,3 +117,17 @@ input[type="radio"]:not(.switch) {
     min-height: calc(100vh - 127.2px);
     align-items: flex-start;
 }
+.warning {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 100%;
+    font-weight: 500;
+    font-size: 2em; 
+    padding: 1em;
+    box-sizing: border-box;
+    text-align: center;   
+}

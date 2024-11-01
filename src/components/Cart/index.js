@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {collection, getDocs, where, query} from 'firebase/firestore/lite';
+import {collection, getDocs, where, query, addDoc} from 'firebase/firestore/lite';
 import Item from './Item';
 import './index.css';
 import { db } from '../../firebaseConfig';
@@ -17,6 +17,17 @@ const Cart = (props) => {
         const parts = value.split("; " + name + "=");
         if (parts.length === 2) return parts.pop().split(";").shift(); 
         return null;
+    }
+
+    const confirmPurchase = async () => {
+
+        const newDoc = await addDoc(collection(db, "purchases"), {
+            items: cartItems,
+            totalPrice: total,
+        });
+
+        window.location=`/confirmation/${newDoc.id}`
+
     }
 
     async function getCartItems(array){
@@ -82,7 +93,7 @@ const Cart = (props) => {
                         <span className="total-text">TOTAL</span>
                         <span className="total-price-text">${total.toFixed(2)}</span>
                     </div>
-                    <div className="checkout-button">Checkout</div>
+                    <div onClick={() => {confirmPurchase();}} className="checkout-button">Checkout</div>
                 </div>
             </div> : <div className="empty-bag">
                 <span className="empty-cart-text">Your shopping bag is empty.</span>    

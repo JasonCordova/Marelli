@@ -1,0 +1,32 @@
+.cart-confirmation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4em 32px;
+    box-sizing: border-box;
+    height: 600px;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.cart-confirmation img{
+    height: 160px;
+}
+
+.confirmation-title {
+    font-size: 2em;
+    font-weight: 500;
+    margin-top: 1em;
+}
+
+.order-number {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: .8em;
+    color: #6F6F6F;
+    margin-top: 0.5em;
+}

@@ -24,7 +24,7 @@ const Header = (props) => {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
 
-    const filledPages = ['/register', '/profile', '/shop', '/create_item', '/products', '/cart'];
+    const filledPages = ['/register', '/profile', '/shop', '/create_item', '/products', '/cart', '/confirmation'];
     const pageLocation = useLocation();
 
     const checkPages = () => {

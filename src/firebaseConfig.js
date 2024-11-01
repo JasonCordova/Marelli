@@ -10,7 +10,7 @@ import image from './M.png';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBbMmSBkOd2UvASGjEn-ywA2gFxgyGYcZ8",
+  apiKey: process.env.REACT_APP_KEY,
   authDomain: "marelli-ad154.firebaseapp.com",
   projectId: "marelli-ad154",
   storageBucket: "marelli-ad154.appspot.com",

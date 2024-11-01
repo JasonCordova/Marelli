@@ -89,7 +89,9 @@ const Shop = () => {
                     </div> 
                 
                 : <>
-                
+
+                    {/* <div className='warning'>Make your own item in the menu!</div> */}
+
                     {items ? items.map((e, i) => {
                          return (
                         <a href={`../products/${e.id}`} className="category" key={i}>
