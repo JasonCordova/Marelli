@@ -80,7 +80,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="popular-categories">
+                <div className="popular-categories flex-start">
 
                     {featuredItems.map((e, i) => {
 

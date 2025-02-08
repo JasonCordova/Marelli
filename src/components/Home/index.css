@@ -115,6 +115,10 @@
     background: linear-gradient(0deg, rgb(0 0 0 / 50%), rgba(0, 0, 0, 0));
 }
 
+.flex-start {
+    align-items: flex-start;
+}
+
 .popular-categories {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
