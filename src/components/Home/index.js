@@ -1,9 +1,9 @@
 import video3 from '../../adrian_1.mp4';
 import './index.css';
-import { useRef, useState } from 'react';
-import { auth } from '../../firebaseConfig.js';
+import { useRef, useState, useEffect} from 'react';
+import { db } from '../../firebaseConfig';
+import {collection, getDocs, where, query} from 'firebase/firestore/lite';
 
-const imageLink = 'https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-double-breasted-tailored-wool-jacket--HQJ63WGRN900_PM2_Front%20view.png?wid=490&hei=490';
 
 const playIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 1196"><path d="m1 1 31 19.31 45 28.64 165 105 500 318.1 132 84L939 597v2l-65 40.95-132 84-500 318.1-165 105-45 28.64L1 1195V1Z"/></svg>;
 const pauseIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 384"><path d="M9 .57 35 0h45c12.78.06 15.98 4.81 16 17v350c-.02 13.19-3.81 16.98-17 17H15c-11.39-.14-14.95-5.11-15-16V15C.09 7.52 1.63 3.47 9 .57Zm160 0L195 0h45c12.78.06 15.98 4.81 16 17v350c-.02 13.19-3.81 16.98-17 17h-64c-11.39-.14-14.95-5.11-15-16V15c.09-7.48 1.63-11.53 9-14.43Z"/></svg>
@@ -14,6 +14,7 @@ const Home = () => {
     const videoElement = useRef(null);
     const [playing, setPlaying] = useState(true);
     const [isMuted, setMuted] = useState(true);
+    const [featuredItems, setFeaturedItems] = useState([]);
 
     const handlePlay = () => {
         setPlaying(!playing);
@@ -21,9 +22,30 @@ const Home = () => {
         else videoElement.current.play();
     }
 
+    async function getItems(array){
+    
+            if (array.length !== 0){
+    
+                const col = collection(db, "items");
+                const q = query(col, where('__name__', 'in', array))
+                const snapshot = await getDocs(q);
+                const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    
+                setFeaturedItems(items);
+    
+            }        
+    
+        }
+
     const handleAudio = () => {
         setMuted(!isMuted);
     }
+
+    useEffect(() => {
+
+        getItems(['cherry-red-dufflebag', 'pastel-graphic-teee', 'thrifted-boots', 'checkered-jean-jacket']);
+
+    }, [])
 
     return (
         <>
@@ -60,15 +82,31 @@ const Home = () => {
 
                 <div className="popular-categories">
 
-                    {[1, 2, 3, 4].map((e) => {
-                        return (<a href="#" className="category" key={e}>
-                        <img draggable={false} src={imageLink} className='category-img'/>
+                    {featuredItems.map((e, i) => {
+
+                        return (
+                        <a href={`../products/${e.id}`} className="category" key={i}>
+                        <img alt="Product" draggable={false} src={e.image} className='category-img'/>
                         <div className="category-info">
-                            <div className="category-title">Item Name</div>
-                            <div className="category-price">$99.99</div>
+                            <div className="category-title">{e.name}</div>
+                            <div className="category-price">
+
+                                { e.currentPrice.toFixed(2) < e.retailPrice.toFixed(2) ? 
+                                    <><span className="current-price">{"$" + e.currentPrice.toFixed(2).toLocaleString('en-US')}</span><span className='retail'>{"$" + e.retailPrice.toFixed(2)}</span></> 
+                                    : <span>{"$" + e.currentPrice.toFixed(2).toLocaleString('en-US')}</span> 
+                                }
+
+                            </div>
                         </div>
-                    </a>);
+                        </a>
+                        );
+
                     })}
+                        
+                        
+                        
+                        
+                    
 
                 </div>
 
