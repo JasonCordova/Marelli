@@ -5,4 +5,5 @@ Built from scratch using React, Google Firebase and Firestore for database and s
 
 Features include product management, user interactions, and real-time updates.
 
-[Live Demo](https://jazzy-croissant-6bb6fb.netlify.app/)
+[![View Live Site](https://img.shields.io/badge/View-Live%20Site-brightgreen?style=for-the-badge)](https://jazzy-croissant-6bb6fb.netlify.app/)
+
