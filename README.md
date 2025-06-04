@@ -1,3 +1,6 @@
 # M A R E L L I
 
-CRUD React.js application dedicated to mimicking a luxury e-commerce website; Made entirely from scratch. Google Firebase's Firestore Database and Storage utilized.
+A sleek CRUD React.js app mimicking a luxury e-commerce site.  
+Built from scratch using React, Google Firebase and Firestore for database and storage.
+
+Features include product management, user interactions, and real-time updates.
