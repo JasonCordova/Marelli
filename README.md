@@ -5,4 +5,4 @@ Built from scratch using React, Google Firebase and Firestore for database and s
 
 Features include product management, user interactions, and real-time updates.
 
-![Live Site](https://img.shields.io/badge/CloudBees-1997B5&?logo=cloudbees&logoColor=white&style=for-the-badge)
+👉 [Click here to view](https://jazzy-croissant-6bb6fb.netlify.app/)
